@@ -4,11 +4,18 @@ import { v4 as uuidv4 } from 'uuid';
 class Form extends React.Component {
   state = {
     name: '',
+    number: '',
   };
-
+  handleNumberChange = event => {
+    this.setState({
+      number: event.currentTarget.value,
+    });
+  };
   handleNameChange = event => {
     // console.log(event.currentTarget.value);
-    this.setState({ name: event.currentTarget.value });
+    this.setState({
+      name: event.currentTarget.value,
+    });
   };
 
   handleSubmit = event => {
@@ -19,12 +26,13 @@ class Form extends React.Component {
   contact = {
     id: uuidv4(),
     name: this.state.name,
+    number: this.state.number,
     // console.log(this.state);
     // this.setState({})
   };
 
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -43,6 +51,18 @@ class Form extends React.Component {
             onChange={this.handleNameChange}
           />
         </label>
+        <label htmlFor="">
+          Number
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={this.state.number}
+            onChange={this.handleNumberChange}
+          />
+        </label>
 
         <button
           type="submit"
@@ -50,7 +70,7 @@ class Form extends React.Component {
             this.props.onClick({
               name: this.state.name,
               id: uuidv4(),
-              number: "'234234",
+              number: this.state.number,
             });
           }}
         >

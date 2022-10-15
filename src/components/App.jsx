@@ -13,13 +13,19 @@ class App extends React.Component {
     filter: '',
   };
   /////////////////////////////////////////////////////////
-  // Добавляет контакт (желательно сократить или вынести)
+  // Добавление нового контакта
+
   addContact = newContact => {
     console.log('newContact', newContact);
-    // Проверка на дубликат
+    // Проверяем контакты на совпадение по названию
     const duplicateName = this.state.contacts.find(
       contact => contact.name === newContact.name
     );
+    // Проверяем чтобы были заполнены поля ввода
+    if (newContact.name === '' || newContact.number === '') {
+      alert('Sorry, you need to fill in the specified input fields');
+      return;
+    }
 
     if (duplicateName) {
       alert(`${newContact.name} is already on contacts`);
@@ -47,7 +53,7 @@ class App extends React.Component {
     );
   };
 
-  // Удаляет контакт
+  // Удаляем контакт из списка
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
