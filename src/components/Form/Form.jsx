@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 class Form extends React.Component {
   state = {
@@ -14,6 +15,10 @@ class Form extends React.Component {
     event.preventDefault();
     this.props.onSubmit(this.state);
     this.reset();
+  };
+  contact = {
+    id: uuidv4(),
+    name: this.state.name,
     // console.log(this.state);
     // this.setState({})
   };
@@ -23,6 +28,7 @@ class Form extends React.Component {
   };
 
   render() {
+    console.log('props', this.props);
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="">
@@ -38,7 +44,18 @@ class Form extends React.Component {
           />
         </label>
 
-        <button type="submit">Add contact</button>
+        <button
+          type="submit"
+          onClick={() => {
+            this.props.onClick({
+              name: this.state.name,
+              id: uuidv4(),
+              number: "'234234",
+            });
+          }}
+        >
+          Add contact
+        </button>
       </form>
     );
   }
