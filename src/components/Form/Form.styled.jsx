@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Forma = styled.form`
   background-color: gold;
-  width: 600px;
+  width: 425px;
   height: 200px;
   display: flex;
   align-items: center;

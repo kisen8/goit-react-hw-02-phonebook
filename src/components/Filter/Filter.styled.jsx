@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FilterWrap = styled.label`
   background-color: gold;
-  width: 600px;
+  width: 425px;
   height: 70px;
   display: flex;
   flex-direction: column;
