@@ -1,18 +1,19 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
+import { Forma, Label, Input, Btn, BtnText } from './Form.styled';
 class Form extends React.Component {
   state = {
     name: '',
     number: '',
   };
+  //----- методы:-------
+
   handleNumberChange = event => {
     this.setState({
       number: event.currentTarget.value,
     });
   };
   handleNameChange = event => {
-    // console.log(event.currentTarget.value);
     this.setState({
       name: event.currentTarget.value,
     });
@@ -23,12 +24,11 @@ class Form extends React.Component {
     this.props.onSubmit(this.state);
     this.reset();
   };
+
   contact = {
     id: uuidv4(),
     name: this.state.name,
     number: this.state.number,
-    // console.log(this.state);
-    // this.setState({})
   };
 
   reset = () => {
@@ -36,12 +36,11 @@ class Form extends React.Component {
   };
 
   render() {
-    console.log('props', this.props);
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="">
+      <Forma onSubmit={this.handleSubmit}>
+        <Label htmlFor="">
           Name
-          <input
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -50,10 +49,10 @@ class Form extends React.Component {
             value={this.state.name}
             onChange={this.handleNameChange}
           />
-        </label>
-        <label htmlFor="">
+        </Label>
+        <Label htmlFor="">
           Number
-          <input
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -62,9 +61,9 @@ class Form extends React.Component {
             value={this.state.number}
             onChange={this.handleNumberChange}
           />
-        </label>
+        </Label>
 
-        <button
+        <Btn
           type="submit"
           onClick={() => {
             this.props.onClick({
@@ -74,9 +73,9 @@ class Form extends React.Component {
             });
           }}
         >
-          Add contact
-        </button>
-      </form>
+          <BtnText>Add contact</BtnText>
+        </Btn>
+      </Forma>
     );
   }
 }

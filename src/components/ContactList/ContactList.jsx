@@ -1,12 +1,13 @@
 import React from 'react';
 import ContactItem from '../ContactItem/ContactItem';
-
-// Принимает все контакты и пробрасывает дальше метод для удаления контакта
+import PropTypes from 'prop-types';
+import { ListContacts } from './ContactList.styled';
+// все контакты принимает  + метод чтобы удалять контакт
 class ContactList extends React.Component {
   render() {
     const { contacts, onDeleteContact } = this.props;
     return (
-      <ul>
+      <ListContacts>
         {contacts.map(contact => (
           <ContactItem
             contact={contact}
@@ -14,18 +15,18 @@ class ContactList extends React.Component {
             key={contact.id}
           />
         ))}
-      </ul>
+      </ListContacts>
     );
   }
 }
 export default ContactList;
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     }),
-//   ),
-//   onDeleteContact: PropTypes.func.isRequired,
-// };
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  onDeleteContact: PropTypes.func.isRequired,
+};

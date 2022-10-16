@@ -2,21 +2,16 @@ import React from 'react';
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
+import { Container, TitlePhonebook, TitleContacts } from 'App.styled';
 class App extends React.Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
-  /////////////////////////////////////////////////////////
+
   // Добавление нового контакта
 
   addContact = newContact => {
-    console.log('newContact', newContact);
     // Проверяем контакты на совпадение по названию
     const duplicateName = this.state.contacts.find(
       contact => contact.name === newContact.name
@@ -37,12 +32,12 @@ class App extends React.Component {
     }));
   };
 
-  // Следит за полем фильтрации и пишет в стейт
+  // для того чтобы следить за полем фильтрации и писать в ---> state
   changeFilter = event => {
     this.setState({ filter: event.currentTarget.value });
   };
 
-  // Фильтрует и возвращает результат фильтра
+  // Фильтр, возвращает результат фильтра
   filterContacts = () => {
     const { contacts, filter } = this.state;
 
@@ -60,10 +55,8 @@ class App extends React.Component {
     }));
   };
 
-  //////////////////////////////////////////////////////
-
   formSubmitHandler = data => {
-    console.log(data);
+    // console.log(data);
   };
 
   render() {
@@ -71,16 +64,16 @@ class App extends React.Component {
     const filteredResults = this.filterContacts();
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Container>
+        <TitlePhonebook>Phonebook</TitlePhonebook>
         <Form onSubmit={this.formSubmitHandler} onClick={this.addContact} />
-        <h2>Contacts</h2>
+        <TitleContacts>Contacts</TitleContacts>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={filteredResults}
           onDeleteContact={this.deleteContact}
         />
-      </div>
+      </Container>
     );
   }
 }
