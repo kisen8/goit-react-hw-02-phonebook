@@ -10,7 +10,7 @@ import {
   Input,
   Btn,
   BtnText,
-} from './Form.styled';
+} from './ContactForm.styled';
 class Form extends React.Component {
   state = {
     name: '',
@@ -31,7 +31,11 @@ class Form extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({
+      name: this.state.name,
+      id: uuidv4(),
+      number: this.state.number,
+    });
     this.reset();
   };
 
@@ -77,16 +81,7 @@ class Form extends React.Component {
             />
           </Label>
 
-          <Btn
-            type="submit"
-            onClick={() => {
-              this.props.onClick({
-                name: this.state.name,
-                id: uuidv4(),
-                number: this.state.number,
-              });
-            }}
-          >
+          <Btn type="submit">
             <BtnText>Add contact</BtnText>
           </Btn>
         </LableWrap>

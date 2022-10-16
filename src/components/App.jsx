@@ -1,12 +1,17 @@
 import React from 'react';
-import Form from './Form/Form';
+import Form from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 
 import { Container, TitlePhonebook, TitleContacts } from 'App.styled';
 class App extends React.Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
   };
 
@@ -17,11 +22,7 @@ class App extends React.Component {
     const duplicateName = this.state.contacts.find(
       contact => contact.name === newContact.name
     );
-    // Проверяем чтобы были заполнены поля ввода
-    if (newContact.name === '' || newContact.number === '') {
-      alert('Sorry, you need to fill in the specified input fields');
-      return;
-    }
+    // Проверяем чтобы были правильно заполнены поля ввода
 
     if (duplicateName) {
       alert(`${newContact.name} is already on contacts`);
@@ -56,10 +57,6 @@ class App extends React.Component {
     }));
   };
 
-  formSubmitHandler = data => {
-    // console.log(data);
-  };
-
   render() {
     const { filter } = this.state;
     const filteredResults = this.filterContacts();
@@ -67,7 +64,7 @@ class App extends React.Component {
     return (
       <Container>
         <TitlePhonebook>Phonebook</TitlePhonebook>
-        <Form onSubmit={this.formSubmitHandler} onClick={this.addContact} />
+        <Form onSubmit={this.addContact} />
         <TitleContacts>Contacts</TitleContacts>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
