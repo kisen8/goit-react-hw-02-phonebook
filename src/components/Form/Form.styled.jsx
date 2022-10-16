@@ -5,14 +5,28 @@ export const Forma = styled.form`
   width: 600px;
   height: 200px;
   display: flex;
-  flex-direction: column;
-  align-items: baseline;
+  align-items: center;
+  justify-content: start;
   padding: 5px;
   border-radius: 20px;
-  /* margin: o auto; */
-  /* padding: 20px; */
 `;
 
+export const ImgWrap = styled.div`
+  display: flex;
+  margin-left: 20px;
+`;
+export const Images = styled.img`
+  width: 150px;
+  height: 180px;
+  border-radius: 20px;
+  display: flex;
+  margin: 0;
+`;
+export const LableWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 65px;
+`;
 export const Label = styled.label`
   color: #2020a3;
   font-size: 25px;

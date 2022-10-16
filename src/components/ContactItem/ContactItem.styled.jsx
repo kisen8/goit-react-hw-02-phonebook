@@ -24,7 +24,6 @@ export const BtnDelete = styled.a`
   border: 2px solid black;
   border-radius: 5px;
   padding: 5px;
-  margin-right: 50px;
   margin-left: auto;
   font-weight: 400;
   background-color: #ee4e3c;
